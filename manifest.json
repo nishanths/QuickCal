@@ -1,0 +1,33 @@
+{
+  "name"                    : "Quick Cal",
+  "short_name"              : "quickcal",
+  "version"                 : "0.0.1",
+  "description"             : "Add dates from webpages to Google Calendar",
+  "icons"                   : { "512": "icons/classic/512b.png", "16": "icons/classic/16.png" },
+														
+  "manifest_version"        : 2,
+
+  "background"              : { 
+                              "page": "src/bg/background.html",
+                              "persistent": true
+                            },
+
+  "content_scripts"         :[{
+                              "matches" : ["http://www.google.com/robots.txt*"],
+                              "js"      : ["oauth2/oauth2_inject.js"],
+                              "run_at"  : "document_start"
+                            }],
+
+  "permissions"             :[
+                              "https://accounts.google.com/o/oauth2/token",
+                              "https://www.googleapis.com/",
+                              "*://*/*",
+                              "tabs",
+                              "storage",
+                              "notifications",
+                              "contextMenus"
+                            ],
+		
+	"web_accessible_resources" : [ "oauth2/oauth2.html", "*"]
+		
+}
