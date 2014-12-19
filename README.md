@@ -13,7 +13,7 @@ Usage
 * Select the date, time, and any relevant text on the page.
 * Then choose Add to Calendar from the right-click menu.
 
-![demo](http://zippy.gfycat.com/WeeklyDeliriousBlackmamba.gif)
+![demo](http://giant.gfycat.com/WeeklyDeliriousBlackmamba.gif)
 
 License
 ===
