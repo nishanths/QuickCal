@@ -2,7 +2,7 @@
 ========
 Google Chrome extension that enables you to add events from any webpage to Google Calendar in a few clicks. Uses the amazing [oauth2 library](https://github.com/borismus/oauth2-extensions) by @borismus.
 
-![image](https://s3.amazonaws.com/f.cl.ly/items/0s3O3k1L021X2v1h1A1K/Screen%20Shot%202014-12-19%20at%201.02.08%20AM.png)
+![image](http://cl.ly/image/1I113k1r0A1l/notification3.png)
 
 Installing
 ===
