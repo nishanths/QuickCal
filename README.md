@@ -1,4 +1,4 @@
-QuickCal
+[QuickCal](http://goo.gl/Xi5CPY)
 ========
 Single click event adding to Google Calendar
 
