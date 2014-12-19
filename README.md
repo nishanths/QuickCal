@@ -1,18 +1,20 @@
 [QuickCal](http://goo.gl/Xi5CPY)
 ========
-Single click event adding to Google Calendar
+Google Chrome extension that enables you to add events from any webpage to Google Calendar in a few clicks. Uses the amazing [oauth2 library](https://github.com/borismus/oauth2-extensions) by @borimus.
+
+![image](https://s3.amazonaws.com/f.cl.ly/items/0s3O3k1L021X2v1h1A1K/Screen%20Shot%202014-12-19%20at%201.02.08%20AM.png)
 
 Installing
 ===
-Get it from the [Google Chrome Web Store](http://goo.gl/Xi5CPY).
+Get it from the [Chrome Web Store](http://goo.gl/Xi5CPY).
 
 Usage
 ===
-* Select any date, time, and relevant text on the page.
-* Right-click and choose Add to Calendar.
+* Select the date, time, and any relevant text on the page.
+* Then choose Add to Calendar from the right-click menu.
 
 ![demo](https://s3.amazonaws.com/f.cl.ly/items/1r3l3w261U3k3B2j3g0v/in.gif)
 
 License
 ===
-[MIT](https://github.com/nishanths/QuickCal/blob/master/LICENSE).
+[MIT](https://github.com/nishanths/QuickCal/blob/master/LICENSE)
