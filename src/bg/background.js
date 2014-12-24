@@ -55,7 +55,6 @@
 	});
   
   
-  /***************************** FUNCTIONS ********************************/
   /**************************** CONTEXT MENU ******************************/
   
   function removeAllContextMenus() {
@@ -229,9 +228,7 @@
 						var end_date_obj = new Date(end.date_string);
 						
 						// Event title exists?
-						if (res.summary)  { 
-							notification_title = res.summary;
-						}
+						if (res.summary)  { notification_title = res.summary;}
 							              					
 						// Time vs all-day
 						if (start.includesTime) {
@@ -243,29 +240,12 @@
               notification_message.part1 += ", " + beautifulDate(start_date_obj, start.includesTime);
 						}
             
-//          // Compute information
-//          if (start.includesTime && end.includesTime) {
-//               var units = "minutes";
-//               var diff = (end_date_obj - start_date_obj) / (60*1000);
-//               var that_diff = diff;
-//               // console.log(diff);
-//               if (diff <= 1) units = "mintue";
-//               if (diff <= 60) {
-//                 units = "hours";
-//                 diff = diff / 60;
-//                 diff = Math.round(diff);
-//                 if (diff <= 1) units = "hour";
-//               }
-//
-//               if (!(that_diff > 2880)) notification_message.part2 += " (" + diff.toString() + " " + units + ")";
-//             }
-            
-            // For getting icon
+            // Compute data to make icon url
         		var date = start_date_obj.getDate();
             if (!start.includesTime) date += 1;
             date = date.toString();
 						
-						// Notifications
+						// Clear and create notification
 						chrome.notifications.clear("atc-addtocal-n-addactionresult", function (a) {});
 						chrome.notifications.clear("atc-addtocal-n-addactionresult-bad", function (a) {});            
 						chrome.notifications.create("atc-addtocal-n-addactionresult", {
@@ -276,11 +256,10 @@
               contextMessage: "Event added",
 							buttons: [{title: "Edit event"}],
 							isClickable: true
-	          }, function(ni){ console.log(ni); });
+	          }, function(a){});
 	        } 
 					
 					else {	// Request failure
-	          console.log("No response received.");
 						chrome.notifications.clear("atc-addtocal-n-addactionresult", function (a) {});
 						chrome.notifications.clear("atc-addtocal-n-addactionresult-bad", function (a) {});
 	          chrome.notifications.create("atc-addtocal-n-addactionresult-bad", {
@@ -289,7 +268,7 @@
 							title: "Event not added", 
 							message:"Something messed up and the event wasn't added.",
 							buttons: [{title: "Try again?"}]
-						}, function(ni){ console.log(ni); });
+						}, function(a){ });
 	        }
 	      }
 	    };
