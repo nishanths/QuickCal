@@ -10,7 +10,8 @@
 	var current_text = ""; // for retrying
 	
 	var path_to_root = "../../../";
-	var classic_icon = "icons/classic/512.png";
+	var calendar_date_icon_path = "icons/classic/calendars-notification/";
+  var remote_cal_date_notification_url = "http://github.com/nishanths/QuickCal/tree/master/icons/classic/calendars-notification/"
 	var dark_icon = "icons/dark/512.png";
 	
 	// Simple helpers
@@ -55,21 +56,19 @@
 	}
 	
 	// Converts to the kind of date we want, uses some helpers
-	function beautifulDate(d, dt) {
+	function beautifulDate(d, is_dt) {
 		var comma = ", ";
 		var space = " ";
 
 		var date = d.getDate().toString();
 		var month = d.getMonthName();
 		var year = d.getFullYear();
-		
-		// Shorten day
 		var day = d.getDayName();
 		// day = day.slice(0,3);
 		
 		var result = day + comma + month + space + date + comma + year;
 		
-		if (dt) { // DateTime
+		if (is_dt) { // DateTime
 			if (isToday_DateTime(d)) {
 				result = "today";
 			} else if (isTomorrow_DateTime(d)) {
@@ -145,13 +144,13 @@
 						if (res.summary)  { 
 							notification_title = "Added: " + res.summary;
 						}
-												
+							              					
 						// Time vs all-day
 						if (start.includesTime) {
 							notification_message.part1 = "Starting at " + to12Time(start_date_obj) + ", " + beautifulDate(start_date_obj, start.includesTime);
 						} else { // all day event
 							start_date_obj = new Date(start.date_string);
-							notification_message.part1 = "All-day, " + beautifulDate(start_date_obj, start.includesTime);
+							notification_message.part1 = "all-day, " + beautifulDate(start_date_obj, start.includesTime);
 						}
 						
 						// Notifications
@@ -160,7 +159,7 @@
 						
 						chrome.notifications.create("atc-addtocal-n-addactionresult", {
 	            type: "basic",
-	            iconUrl: path_to_root + classic_icon,
+	            iconUrl: remote_cal_date_notification_url + (start_date_obj.getMonth() + 1).toString() + "/" + (start_date_obj.getDate()).toString() + ".png",
 	            title: notification_title,
 	            message: notification_message.part1,
 							buttons: [{title: "Edit event"}],

@@ -3,7 +3,7 @@
   "short_name"              : "quickcal",
   "version"                 : "0.0.1",
   "description"             : "Add dates from webpages to Google Calendar",
-  "icons"                   : { "512": "icons/classic/512b.png", "16": "icons/classic/16.png" },
+  "icons"                   : { "512": "icons/classic/main.png", "16": "icons/classic/16.png" },
 														
   "manifest_version"        : 2,
 
