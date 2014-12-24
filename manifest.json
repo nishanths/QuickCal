@@ -1,8 +1,8 @@
 {
   "name"                    : "Quick Cal",
   "short_name"              : "quickcal",
-  "version"                 : "0.0.1",
-  "description"             : "Add dates from webpages to Google Calendar",
+  "version"                 : "0.0.4",
+  "description"             : "Add dates from webpages to Google Calendar in a single click",
   "icons"                   : { "512": "icons/classic/main.png", "16": "icons/classic/16.png" },
 														
   "manifest_version"        : 2,
