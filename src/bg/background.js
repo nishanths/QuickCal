@@ -32,11 +32,11 @@
   
   // Check whether updated extension
   chrome.runtime.onInstalled.addListener(function(details){
-    if(details.reason == "install"){
-      console.log("This is a first install!");
+    if (details.reason == "install"){
+      // do nothing
     } else if(details.reason == "update"){
-      var thisVersion = chrome.runtime.getManifest().version;
-      console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
+      // var thisVersion = chrome.runtime.getManifest().version;
+      // To write
     }
   });
     
@@ -127,9 +127,7 @@
     });
         
     if (options.mode === "simple" || l < 1) { // .Simple (or) chose .Advanced and did not specify anything
-      createSingleMenu_withNickname_andId("primary", "primary");
-      console.log(l + "blueh");
-      
+      createSingleMenu_withNickname_andId("primary", "primary");      
     }
    
     else if (options.mode === "advanced" && l === 1) { // .Advanced and specified one single calendar (cannot POST to 'primary' url) (and) (display one menu option with non-specialized title)       
