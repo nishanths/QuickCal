@@ -7,7 +7,6 @@ function saveOptions(updatedDiffObj) {
 }
 
 chrome.storage.sync.get(null, function(c){
-  console.log(c);
   if (c.mode !== "simple" && c.mode !== "advanced") { // No prior settings found
     document.mainForm.modeSelectS.checked = true; // set mode on page
     document.mainForm.modeSelectA.checked = false;
@@ -66,7 +65,7 @@ app.controller('main', function($scope, $timeout){
   $scope.cals = [];
   
   chrome.storage.sync.get(null, function(c) {
-    if (c.calendar_ids.length !== 0) {
+    if (c.calendar_ids && (c.calendar_ids.length !== 0)) {
       $scope.cals = c.calendar_ids;
     }
     $scope.$apply();
@@ -75,21 +74,18 @@ app.controller('main', function($scope, $timeout){
   // + Add button
   $scope.newCal = function(){
     $scope.cals.push({name:'', id: '', isNew: true});
-    console.log($scope.cals);
     saveOptions({ calendar_ids: $scope.cals });
   };
   
   // Update button
   $scope.updateCal = function(){
     // Real updating is taken care of by library, only do saving
-    console.log($scope.cals);
     saveOptions({ calendar_ids: $scope.cals });
   }
   
   // - Delete button
   $scope.removeCal = function(i){
     $scope.cals.splice(i,1);
-    console.log($scope.cals);
     saveOptions({ calendar_ids: $scope.cals });
   };
 }); 

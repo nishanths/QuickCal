@@ -21,14 +21,8 @@ What's New
 ===
 * Icons for every date and month in the notifications.
 * More details in notifications including duration and calendar information.
-* [Options page](chrome-extension://icjajjdjapnambfpabdklkenamgjcfba/options/index.html).
+* [Options page](chrome://extensions?options=npahnpemegpjflcnfndnnolndkmcbfpi).
 * Multiple calendars.
-
-Options page
-===
-* Add up to 6 separate Google calendar IDs.
-
-![options](http://cl.ly/image/3Z0S0Q0i0o3Y/options.png)
 
 License
 ===

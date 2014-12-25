@@ -33,9 +33,9 @@
   // Check whether updated extension
   chrome.runtime.onInstalled.addListener(function(details){
     if (details.reason == "install"){
-      chrome.tabs.create({ url: "chrome-extension://icjajjdjapnambfpabdklkenamgjcfba/options/index.html" }, function(t){});
+      // chrome.tabs.create({ url: "chrome://extensions?options=npahnpemegpjflcnfndnnolndkmcbfpi" }, function(t){});
     } else if(details.reason == "update"){
-      chrome.tabs.create({ url: "chrome-extension://icjajjdjapnambfpabdklkenamgjcfba/options/index.html" }, function(t){});
+      // chrome.tabs.create({ url: "chrome://extensions?options=npahnpemegpjflcnfndnnolndkmcbfpi" }, function(t){});
     }
   });
     
@@ -60,7 +60,6 @@
   
   // Set the options global variable with the changed options
   chrome.storage.onChanged.addListener(function() {
-    console.log("Changes to storage detected in background.js");
     fetchOptions();
   });
 
@@ -74,7 +73,6 @@
       options.calendar_ids = items.calendar_ids;
       options.notificationClickEdit = false;
       options.locale = "en-us";
-      console.log(options);
       redoContextMenus();
     });
   }
@@ -106,7 +104,6 @@
   
   function removeAllContextMenus() {
     chrome.contextMenus.removeAll();
-    console.log("Removed all context menus.");
   }
   
   // Removes all + Creates depending on options

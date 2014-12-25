@@ -1,7 +1,7 @@
 {
   "name"                    : "QuickCal",
   "short_name"              : "quickcal",
-  "version"                 : "0.0.6",
+  "version"                 : "0.0.7",
   "description"             : "Add dates from webpages to Google Calendar in a single click",
   "icons"                   : { "512": "icons/classic/main.png", "16": "icons/classic/16.png" },
 														
@@ -21,8 +21,7 @@
 
   "permissions"             :[
                               "https://accounts.google.com/o/oauth2/token",
-                              "https://www.googleapis.com/", "http://localhost/*", "http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js",
-                              "http://vitalets.github.io/angular-xeditable/dist/js/xeditable.js",
+                              "https://www.googleapis.com/", "http://localhost/*",
                               "*://*/*", "https://*/*", "http://*/*",
                               "tabs",
                               "storage",
