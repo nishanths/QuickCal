@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundation | Welcome</title>
+  <!-- <link rel="stylesheet" href="css/foundation.css" /> -->
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/main.css" />    
+  <script src="js/vendor/modernizr.js"></script>
+  <script src="js/angular/angular.min.js"></script>
+  <script src="js/xeditable.js"></script>
+  <link href="css/xeditable.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+
+<body ng-app="calIDs" ng-controller="main">
+    <!-- Header -->
+    <div class="row">
+      <div>
+        <header>QuickCal <div class="dim">Options</div></header>
+      </div>
+    </div>
+    
+    <!-- Simple/Advanced -->
+    <form name="mainForm">
+      <div class="row">
+        <div>
+          <input type="radio" name="mode" value="simple" id="modeSelectS"><label for="modeSelectS" id="simpleLabel">Simple</label></input><div class="subtext">If you generally put your events into a single calendar.</div>      
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="large-12 columns">
+          <input type="radio" name="mode" value="advanced" id="modeSelectA"><label for="modeSelectA" id="advancedLabel">Advanced</label></input><div class="subtext">If you use more than one calendar or use a custom calendar to manage events.</div>      
+        </div>
+      </div>
+    </form>
+  
+    <!-- Slide advanced -->
+    <div class="row">
+      <div>
+        <div id="slide-advanced">
+          <div class="subtext">
+            <div>
+              Add up to 6 calendar IDs, which you can later pick from the context menu when adding events. <a class="highlight">See this page</a> if you need help finding calendar IDs.
+            </div>  
+          </div>
+
+          <!-- Buttons -->
+          <div class="container">
+            <a class="plus" ng-click="newCal()"><i class="fa fa-plus"></i> Add</a>
+          </div>
+          
+          <!-- List -->
+          <div id="wrap">
+            <div class="container">
+                <ul ng-repeat="cal in cals">
+                <li>
+                  <form name="myform" editable-form shown="cal.isNew" onhide="cal.isNew=false">
+                    <a href="#" editable-text="cal.name" ng-click="myform.$show()" e-placeholder="Calendar name (home, work, etc.)" e-required e-style="width: 200px">{{cal.name || 'Empty name'}}</a><span class="dull"> – </span>
+                    <a href="#" class="dull" editable-text="cal.id" ng-click="myform.$show()" e-placeholder="Calendar ID" e-required e-style="width: 200px">{{ (cal.id) || 'empty id'}}</a>
+                    <span ng-click="myform.$submit(); updateCal($index)" ng-show="myform.$visible"><i class="fa fa-check-square"></i>
+                    <span ng-show="myform.$visible" ng-click="removeCal($index)"><i class="fa fa-minus-square"></i>
+                  </form>    
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+        <!-- wtf -->
+        <div id="push"></div>
+        
+        </div>
+      </div>
+    </div> 
+  
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

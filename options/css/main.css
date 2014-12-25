@@ -1,0 +1,201 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+
+html {
+  height: 100%;
+}
+
+body {
+ background: rgba(2,40,49,1);
+ font-family: "Roboto Slab", "Helvetica", "Lucida Grande", sans-serif;
+ font-smoothing: optimizeLegibility;
+ color: rgb(133,	152,	28)	;
+ max-width: 640px;
+ width: 600px;
+ margin: 2rem 3rem;
+ font-size: 16px;
+ font-weight: 300;
+}
+
+header {
+  font-family: "Roboto Slab", "Helvetica", "Lucida Grande", sans-serif;
+  color: rgb(133,	152,	28)	;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+header .dim {
+  color: #888;
+  display: inline-block;
+}
+
+.subtext {
+  color: #888;
+  margin-left: 35px;
+  margin-bottom: 25px;
+}
+
+label.subtext {
+  display: inline-block;
+  margin-left: 15px;
+  vertical-align: -2px;
+  font-size: 16px;
+  height: 42px;
+}
+
+input[type="radio"] {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+input[type="radio"] + label {
+  cursor: pointer;
+}
+
+label {
+  color: rgb(133,152,28);
+  font-size: 1.5em;
+  cursor: text;
+}
+
+#slide-advanced {
+	visibility: visible;
+}
+
+#slide-advanced label {
+  display: block;
+}
+#slide-advanced .subtext {
+  display: inline-block;
+}
+
+#slide-advanced div {
+
+}
+
+#slide-advanced .subtext .sal {
+  opacity: .5;
+  display: inline-block;
+  padding-right: 2px;  
+}
+
+.card {
+}
+
+hr {
+  border-color: #3F5057;
+  border-width: 1px;
+  margin-bottom: 20px;
+}
+
+.fade {
+  color: #888;
+  transition: 0.3s ease-out;
+}
+
+a {
+  text-decoration: none;
+  color: #258F84;
+}
+
+a:visited {
+  outline: none;
+}
+
+a.highlight {
+  color:#258F84;
+}
+
+.highlight {
+  color: #258F84;
+}
+
+/* Responsiveness */
+@media print, screen and (max-width: 800px) {
+  body {
+    max-width: 720px;
+    width: 600px;
+    font-size: 16px;
+  }
+}
+
+
+@media print, screen and (max-width: 720px) {
+  body {
+    max-width: 640px;
+    width: 540px;
+    font-size: 16px;
+    margin: 20px;
+    padding:20px;
+  }
+}
+
+@media print, screen and (max-width: 560px) {
+  body {
+    max-width: 500px;
+    width: 420px;
+    font-size: 14px;
+    margin: 20px;
+    padding:20px;
+  }
+}
+
+
+@media print, screen and (max-width: 480px) {
+  body {
+    max-width: 450px;
+    width: 320px;
+    font-size: 14px;
+    margin: 20px;
+    padding:20px;
+  }
+}
+
+@media print, screen and (max-width: 360px) {
+  body {
+    max-width: 320px;
+    width: 280px;
+    font-size: 14px;
+    margin: 10px;
+    padding:10px;
+  }
+}
+
+@media print, screen and (max-width: 320px) {
+  body {
+    max-width: 320px;
+    width: 300px;
+    font-size: 12px;
+    margin: 5px;
+    padding:5px;
+  }
+}
+
+ul {
+  margin: 4px 0;
+  color: #258F84;
+}
+
+ul li {
+  color: #258F84;
+}
+
+.dull {
+  color: #888 !important;
+}
+
+span i.fa {
+  cursor: pointer;
+  vertical-align: -2px;
+  font-size: 18px;
+  color: #258F84;
+}
+
+a.plus {
+  margin-left: 35px;
+  margin-top: 10px;
+}
+
+div.container {
+  margin-bottom: 20px;
+  
+}
