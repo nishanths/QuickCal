@@ -6,6 +6,11 @@ function saveOptions(updatedDiffObj) {
   });
 }
 
+// Save on window close
+$(window).on("beforeunload", function() { 
+  saveOptions({ mode: $('input[name=mode]:checked').val(), notificationClickEdit: false, locale: "en-us" });
+});
+
 chrome.storage.sync.get(null, function(c){
   if (c.mode !== "simple" && c.mode !== "advanced") { // No prior settings found
     document.mainForm.modeSelectS.checked = true; // set mode on page
@@ -64,6 +69,7 @@ app.run(function(editableOptions) {
 app.controller('main', function($scope, $timeout){ 
   $scope.cals = [];
   
+  // calendar_ids
   chrome.storage.sync.get(null, function(c) {
     if (c.calendar_ids && (c.calendar_ids.length !== 0)) {
       $scope.cals = c.calendar_ids;
