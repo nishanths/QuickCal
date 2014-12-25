@@ -14,6 +14,7 @@ Usage
 * Then choose Add to Calendar from the right-click menu.
 
 ![demo](http://giant.gfycat.com/WeeklyDeliriousBlackmamba.gif)
+
 [Video](https://www.youtube.com/watch?v=Xu9lpSpKsYE)
 
 What's New
