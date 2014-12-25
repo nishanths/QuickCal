@@ -33,10 +33,9 @@
   // Check whether updated extension
   chrome.runtime.onInstalled.addListener(function(details){
     if (details.reason == "install"){
-      // do nothing
+      chrome.tabs.create({ url: "chrome-extension://icjajjdjapnambfpabdklkenamgjcfba/options/index.html" }, function(t){});
     } else if(details.reason == "update"){
-      // var thisVersion = chrome.runtime.getManifest().version;
-      // To write
+      chrome.tabs.create({ url: "chrome-extension://icjajjdjapnambfpabdklkenamgjcfba/options/index.html" }, function(t){});
     }
   });
     
@@ -221,17 +220,17 @@
     
     if (is_dt) { // DateTime
       if (isToday_DateTime(d)) {
-        result = "Today";
+        result = "today";
       } else if (isTomorrow_DateTime(d)) {
-        result = "Tomorrow";
+        result = "tomorrow";
       } 
     } 
       
     else { // not DateTime
       if (isToday_NotDateTime(d)) {
-        result = "Today";
+        result = "today";
       } else if (isTomorrow_NotDateTime(d)) {
-        result = "Tomorrow";
+        result = "tomorrow";
       }
     }
       

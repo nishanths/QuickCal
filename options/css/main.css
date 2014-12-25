@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:100,300);
 
 html {
   height: 100%;
@@ -18,9 +18,13 @@ body {
 
 header {
   font-family: "Roboto Slab", "Helvetica", "Lucida Grande", sans-serif;
-  color: rgb(133,	152,	28)	;
+  color: rgb(133,	152,	28);
   font-size: 2.5rem;
   margin-bottom: 2rem;
+}
+
+header a {
+  color: rgb(133,	152,	28)	;
 }
 
 header .dim {
