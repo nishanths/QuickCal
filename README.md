@@ -20,10 +20,10 @@ Usage
 What's New
 ===
 * Icons for every date and month in the notifications.
-* More details in notifications including duration and calendar information.
-* [Options page](chrome://extensions?options=npahnpemegpjflcnfndnnolndkmcbfpi).
+* More details in notifications including which calendar the event is added to if there are multiple calendars.
+* Options page – access it by entering `chrome://extensions` in the URL bar.
 * Multiple calendars.
 
 License
 ===
-[MIT](https://github.com/nishanths/QuickCal/blob/master/LICENSE)
+QuickCal is licensed under the [MIT License](https://github.com/nishanths/QuickCal/blob/master/LICENSE).

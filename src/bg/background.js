@@ -144,21 +144,12 @@
   }
     
   /**************************** DATE HELPERS ******************************/
-    
-  function isToday_NotDateTime(d) {
-    var t = new Date.today().addDays(-1);
-    return d.toDateString() == t.toDateString();
-  }
   
-  function isTomorrow_NotDateTime(d) {
-   return d.toDateString() == (new Date()).toDateString();
-  }
-  
-  function isToday_DateTime(d) {
+  function isToday(d) {
     return d.toDateString() == (new Date()).toDateString();
   }
   
-  function isTomorrow_DateTime(d) {
+  function isTomorrow(d) {
     var t = new Date.today().addDays(1);
     return d.toDateString() == t.toDateString();
   }
@@ -166,11 +157,11 @@
   /**************************** DATE FORMATTING ******************************/
     
   // Converts to the time format we want
+  // Input: JavaScript Date object
   function to12Time(d) {
     var h = d.getHours();
     var m = d.getMinutes();
     var suffix = "AM";
-    var space = " ";
     
     // Format minutes
     var m_string = m.toString();
@@ -188,47 +179,28 @@
     }
     
     if (suffix === "midnight" || suffix === "noon") {
-      return h.toString() + space + suffix;
+      return h.toString() + " " + suffix;
     }
       
-    return h.toString() + ":" + m_string + space + suffix;
+    return h.toString() + ":" + m_string + " " + suffix;
   }
 
-  // Converts to the kind of date we want, uses some helpers and some :'( code
-  function beautifulDate(d, is_dt) {
-    var comma = ", ";
-    var space = " ";
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    var date = d.getDate(); // may need increment
+  // Converts to the kind of date we want, uses some helpers
+  // Input: JavaScript Date object
+  function beautifulDate(d) {
+    // All variables are strings
+    var date = d.getDate().toString();
     var month = d.getMonthName();
     var year = d.getFullYear().toString();
-    var day = d.getDayName(); // may need increment
+    var day = d.getDayName();
   
-    if (!is_dt) {
-      date += 1;
-      day = days[(d.getDay() + 1) % 7];
-    }
-  
-    date = date.toString();
-  
-    var result = day + comma + month + space + date + comma + year;
+    var result = day + ", " + month + " " + date + ", " + year;
     
-    if (is_dt) { // DateTime
-      if (isToday_DateTime(d)) {
-        result = "today";
-      } else if (isTomorrow_DateTime(d)) {
-        result = "tomorrow";
-      } 
+    if (isToday(d)) {
+      result = "today";
+    } else if (isTomorrow(d)) {
+      result = "tomorrow";
     } 
-      
-    else { // not DateTime
-      if (isToday_NotDateTime(d)) {
-        result = "today";
-      } else if (isTomorrow_NotDateTime(d)) {
-        result = "tomorrow";
-      }
-    }
       
     return result;
   }
@@ -240,7 +212,7 @@
   // Construct Google's oauth object
   var google = new OAuth2('google', {
     client_id: '512064202793-n2ahv2cr871ocopha2ed456sfl42iju8.apps.googleusercontent.com',
-    client_secret: 'S9KnsYZDycCxHvq_lm-SoZDc',
+    client_secret: 'V6Kwk6hyCCq79zoLGzxWHGl9',
     api_scope: 'https://www.googleapis.com/auth/calendar',
     prompt: 'select_account'
   });
@@ -261,65 +233,51 @@
           if(xhr.status == 200) {
             var res = JSON.parse(xhr.responseText); console.log(res);
               current_req_res_context.edit_url = res.htmlLink;
-              var notification_title = "An untitled event was added";
+              var notification_title = "An event with no title was added";
               var notification_message = { part1: "",  part2: "" };
+              var contextMessage = "";
               
-              // Start and end information from the reponse
-              var start = { includesTime: !!res.start.dateTime, date_string: res.start.dateTime || res.start.date };
-              var end = { includesTime: !!res.end.dateTime,   date_string: res.end.dateTime || res.end.date };
-              var start_date_obj = new Date(start.date_string);
-              var end_date_obj = new Date(end.date_string);
+              if (res.summary)  { 
+                notification_title = res.summary; 
+                contextMessage = "Event added";
+              } 
               
-              // Event title exists?
-              if (res.summary)  { notification_title = res.summary; }
-                                                  
+              // Start information from the reponse
+              var start = { 
+                includesTime: !!res.start.dateTime, 
+                date_string: res.start.dateTime || res.start.date 
+              };
+              
+              var start_date_obj;
+                            
               // Time vs all-day
               if (start.includesTime) {
-                notification_message.part1 = to12Time(start_date_obj);
-                notification_message.part1 += ", " + beautifulDate(start_date_obj, start.includesTime);
-              } else { // all day event
                 start_date_obj = new Date(start.date_string);
+                notification_message.part1 = to12Time(start_date_obj);
+              } else { // all day event - Google's response has yyyy-mm-dd format
+                var split = /(\d+)\-(\d+)\-(\d+)/.exec(start.date_string); 
+                split.shift();
+                split = split.map(function(n) { return parseInt(n, 10); });
+                start_date_obj = new Date(split[0], split[1], split[2]);
                 notification_message.part1 = "all-day"
-                notification_message.part1 += ", " + beautifulDate(start_date_obj, start.includesTime);
               }
+              
+              notification_message.part1 += ", " + beautifulDate(start_date_obj);
           
               // Compute data to make icon url
               var date = start_date_obj.getDate();
-              if (!start.includesTime) date += 1;
-              date = date.toString();
               
               // Event successfully added message
-              var contextMessage = "Event added";
               if (!(typeof caller_cal_nickname === "undefined")) { // defined when there are multiple calendars
                 contextMessage += " to " + caller_cal_nickname + " calendar";
               }
-              
-              // Compute duration information
-              // if (start.includesTime && end.includesTime) {
-              //   var units = "minutes";
-              //   var diff = (end_date_obj - start_date_obj) / (60*1000);
-              //   var that_diff = diff;
-              //
-              //   if (diff <= 1) units = "minute";
-              //   if (diff <= 60) {
-              //    units = "hours";
-              //    diff = diff / 60;
-              //    diff = Math.round(diff);
-              //    if (diff <= 1) units = "hour";
-              //   }
-              //
-              //   if (!(that_diff > 24*60*2)) {
-              //     if (contextMessage) contextMessage += " (" + diff.toString() + " " + units + " long)";
-              //     else contextMessage = diff.toString() + " " + units + " long"
-              //   }
-              // }
                       
               // Clear and create notification
               chrome.notifications.clear("atc-addtocal-n-addactionresult", function (a) {});
               chrome.notifications.clear("atc-addtocal-n-addactionresult-bad", function (a) {});            
               chrome.notifications.create("atc-addtocal-n-addactionresult", {
                 type: "basic",
-                iconUrl: paths.remote_cal_date_notification_url + (start_date_obj.getMonth() + 1).toString() + "/" + date + ".png",
+                iconUrl: paths.remote_cal_date_notification_url + (start_date_obj.getMonth() + 1).toString() + "/" + date.toString() + ".png",
                 title: notification_title,
                 message: notification_message.part1,
                 contextMessage: contextMessage,
