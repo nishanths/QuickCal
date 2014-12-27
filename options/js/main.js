@@ -6,6 +6,20 @@ function saveOptions(updatedDiffObj) {
   });
 }
 
+function displaySimple() {
+  $('#slide-advanced').removeClass("pullDown");
+  $('#advancedLabel').addClass('fade');
+  $('#simpleLabel').removeClass('fade');
+  $('#slide-advanced').css('visibility','hidden');
+}
+
+function displayAdvanced() {
+  $('#slide-advanced').addClass("pullDown");
+  $('#simpleLabel').addClass('fade');
+  $('#advancedLabel').removeClass('fade');
+  $('#slide-advanced').css('visibility','visible');
+}
+
 // Save on window close
 $(window).on("beforeunload", function() { 
   saveOptions({ mode: $('input[name=mode]:checked').val(), notificationClickEdit: false, locale: "en-us" });
@@ -28,34 +42,23 @@ chrome.storage.sync.get(null, function(c){
       document.mainForm.modeSelectA.checked = true;
       document.mainForm.modeSelectS.checked = false;
     }
+    
+    // Set initial values on page
+    if ($('input[name=mode]:checked').val() === "advanced") {
+      displayAdvanced();
+    } else if (($('input[name=mode]:checked').val() === "simple")) {
+      displaySimple();
+    }
+    saveOptions({ mode: $('input[name=mode]:checked').val() }); // options.mode
   }
 });
 
-// Page creation time - clear one
-if ($('input[name=mode]:checked').val() === "advanced") {
-  $('#slide-advanced').addClass("pullDown");
-  $('#simpleLabel').addClass('fade');
-  $('#advancedLabel').removeClass('fade');
-  saveOptions({ mode: "advanced" }); // options.mode
-} else if (($('input[name=mode]:checked').val() === "simple")) {
-  $('#slide-advanced').removeClass("pullDown");
-  $('#advancedLabel').addClass('fade'); 
-  $('#simpleLabel').removeClass('fade'); 
-  saveOptions({ mode: "simple" }); // options.mode
-}
-
-// Transition 
+// Transition on click
 $('input[name=mode]').click(function() {
   if ($('input[name=mode]:checked').val() === "advanced") {
-    $('#slide-advanced').addClass("pullDown");
-    $('#simpleLabel').addClass('fade');
-    $('#advancedLabel').removeClass('fade');
-    $('#slide-advanced').css('visibility','visible');
+    displayAdvanced();
   } else if ($('input[name=mode]:checked').val() === "simple") {            
-    $('#slide-advanced').removeClass("pullDown");
-    $('#advancedLabel').addClass('fade');
-    $('#slide-advanced').css('visibility','hidden');
-    $('#simpleLabel').removeClass('fade');
+    displaySimple();
   }
   saveOptions({ mode: $('input[name=mode]:checked').val() }); // options.mode
 });

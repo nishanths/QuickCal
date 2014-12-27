@@ -58,15 +58,14 @@
     }
   });
   
-  // Set the options global variable with the changed options
+  // Set the options global variable with the changed options and redoContext menus, when options change
   chrome.storage.onChanged.addListener(function() {
-    fetchOptions();
+    setOptions();
   });
 
   /**************************** OPTIONS ******************************/
   
-  // Returns an object of the options
-  function fetchOptions() {
+  function setOptions() {
     chrome.storage.sync.get(null, function(items){
       // Since we know the properties, set manually instead of iterating because it is more efficient
       options.mode = items.mode;
@@ -91,7 +90,7 @@
   }
   
   // Mutiple menus, also passes nickname to the main event adding function
-  function createMultiStyleMenus_withNickName_andId(nickname, id) {
+  function createMultiStyleMenus_withNickname_andId(nickname, id) {
     chrome.contextMenus.create({
       type    : "normal", 
       id      : "atc-addtocal-cm-" + nickname, 
@@ -138,7 +137,7 @@
     else { // .Advanced with multiple calendars
       options.calendar_ids.forEach(function(cal) {
         if (cal.name && cal.id) { // not empty strings
-          createMultiStyleMenus_withNickName_andId(cal.name, cal.id);
+          createMultiStyleMenus_withNickname_andId(cal.name, cal.id);
         }
       });
     }    

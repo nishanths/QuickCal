@@ -1,6 +1,6 @@
 [QuickCal](http://goo.gl/Xi5CPY)
 ========
-Google Chrome extension that enables you to add events from any webpage to Google Calendar in a single click. Uses the amazing [oauth2 library](https://github.com/borismus/oauth2-extensions) by @borismus.
+Google Chrome extension that lets you add dates from webpages to Google Calendar in a single click. Uses the amazing [oauth2 library](https://github.com/borismus/oauth2-extensions) by @borismus.
 
 ![image](http://cl.ly/image/0q1x3x3x1y18/Screen%20Shot%202014-12-25%20at%207.20.04%20AM.png)
 

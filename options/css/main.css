@@ -28,12 +28,12 @@ header a {
 }
 
 header .dim {
-  color: #888;
+  color: #aaa;
   display: inline-block;
 }
 
 .subtext {
-  color: #888;
+  color: #aaa;
   margin-left: 35px;
   margin-bottom: 25px;
 }
@@ -92,7 +92,7 @@ hr {
 }
 
 .fade {
-  color: #888;
+  color: #aaa;
   transition: 0.3s ease-out;
 }
 
@@ -184,7 +184,7 @@ ul li {
 }
 
 .dull {
-  color: #888 !important;
+  color: #aaa !important;
 }
 
 span i.fa {
@@ -201,5 +201,8 @@ a.plus {
 
 div.container {
   margin-bottom: 20px;
-  
+}
+
+.editable-empty, .editable-empty:hover, .editable-empty:focus, a.editable-empty, a.editable-empty:hover, a.editable-empty:focus {
+  color: #D11A24;
 }
