@@ -153,6 +153,16 @@
     var t = new Date.today().addDays(1);
     return d.toDateString() == t.toDateString();
   }
+  
+  // Input string with format: "yyyy-mm-dd"
+  // Returns an array of integers [yyyy, m, d];
+  function tokenizeGoogleDate(str) {
+    var tokens = /(\d+)\-(\d+)\-(\d+)/.exec(str); 
+    tokens.shift();
+    tokens = tokens.map(function(n) { return parseInt(n, 10); });
+    
+    return tokens;
+  }
     
   /**************************** DATE FORMATTING ******************************/
     
@@ -255,10 +265,8 @@
                 start_date_obj = new Date(start.date_string);
                 notification_message.part1 = to12Time(start_date_obj);
               } else { // all day event - Google's response has yyyy-mm-dd format
-                var split = /(\d+)\-(\d+)\-(\d+)/.exec(start.date_string); 
-                split.shift();
-                split = split.map(function(n) { return parseInt(n, 10); });
-                start_date_obj = new Date(split[0], split[1], split[2]);
+                var split = tokenizeGoogleDate(start.date_string);
+                start_date_obj = new Date(split[0], split[1]-1, split[2]);
                 notification_message.part1 = "all-day"
               }
               

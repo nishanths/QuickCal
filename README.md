@@ -21,7 +21,7 @@ What's New
 ===
 * Icons for every date and month in the notifications.
 * More details in notifications including which calendar the event is added to if there are multiple calendars.
-* Options page – access it by entering `chrome://extensions` in the URL bar.
+* Add more calendar in the Options page – access it by visiting `chrome://extensions`.
 * Multiple calendars.
 
 License
