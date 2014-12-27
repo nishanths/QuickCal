@@ -207,7 +207,7 @@
   
     if (!is_dt) {
       date += 1;
-      day = days[d.getDay() + 1];
+      day = days[(d.getDay() + 1) % 7];
     }
   
     date = date.toString();
