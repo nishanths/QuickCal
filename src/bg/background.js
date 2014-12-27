@@ -32,10 +32,10 @@
   
   // Check whether updated extension
   chrome.runtime.onInstalled.addListener(function(details){
-    if (details.reason == "install"){
-      // chrome.tabs.create({ url: "chrome://extensions?options=npahnpemegpjflcnfndnnolndkmcbfpi" }, function(t){});
-    } else if(details.reason == "update"){
-      // chrome.tabs.create({ url: "chrome://extensions?options=npahnpemegpjflcnfndnnolndkmcbfpi" }, function(t){});
+    if (details.reason === "install"){
+      // nothing
+    } else if(details.reason === "update"){
+      // nothing
     }
   });
     
@@ -53,8 +53,8 @@
     }
       
     if (notificationId === "atc-addtocal-n-addactionresult-bad") {
-      if (buttonIndex == 0) { addStringToCal(current_req_res_context.text_to_add, current_req_res_context.calendar_id, current_req_res_context.caller_cal_nickname); }
-      else if (buttonIndex == 1) { chrome.tabs.create({ url: "https://github.com/nishanths/QuickCal/blob/master/README.md" }, function(t) {}); }
+      if (buttonIndex === 0) { addStringToCal(current_req_res_context.text_to_add, current_req_res_context.calendar_id, current_req_res_context.caller_cal_nickname); }
+      else if (buttonIndex === 1) { chrome.tabs.create({ url: "https://github.com/nishanths/QuickCal/blob/master/README.md" }, function(t) {}); }
     }
   });
   
