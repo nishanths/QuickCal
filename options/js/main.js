@@ -42,15 +42,17 @@ chrome.storage.sync.get(null, function(c){
       document.mainForm.modeSelectA.checked = true;
       document.mainForm.modeSelectS.checked = false;
     }
-    
-    // Set initial values on page
-    if ($('input[name=mode]:checked').val() === "advanced") {
-      displayAdvanced();
-    } else if (($('input[name=mode]:checked').val() === "simple")) {
-      displaySimple();
-    }
-    saveOptions({ mode: $('input[name=mode]:checked').val() }); // options.mode
   }
+  
+  // Async wait here
+  
+  // Set initial values on page
+  if ($('input[name=mode]:checked').val() === "advanced") {
+    displayAdvanced();
+  } else if (($('input[name=mode]:checked').val() === "simple")) {
+    displaySimple();
+  }
+  saveOptions({ mode: $('input[name=mode]:checked').val() }); // options.mode
 });
 
 // Transition on click

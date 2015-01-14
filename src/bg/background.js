@@ -159,8 +159,7 @@
   function tokenizeGoogleDate(str) {
     var tokens = /(\d+)\-(\d+)\-(\d+)/.exec(str); 
     tokens.shift();
-    tokens = tokens.map(function(n) { return parseInt(n, 10); });
-    
+    tokens = tokens.map(Number);
     return tokens;
   }
     

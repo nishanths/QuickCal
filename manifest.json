@@ -1,7 +1,7 @@
 {
   "name"                    : "QuickCal",
   "short_name"              : "quickcal",
-  "version"                 : "0.1.1",
+  "version"                 : "0.1.2",
   "description"             : "Add dates from webpages to Google Calendar in a single click",
   "icons"                   : { "512": "icons/classic/main.png", "16": "icons/classic/16.png" },
 														
@@ -13,7 +13,7 @@
                             },
 
   "content_scripts"         :[{
-                              "matches" : ["http://www.google.com/robots.txt*", "http://localhost/*"],
+                              "matches" : ["http://www.google.com/robots.txt*"],
                               "js"      : ["oauth2/oauth2_inject.js"],
                               "match_about_blank": true,
                               "run_at"  : "document_start"
@@ -21,7 +21,7 @@
 
   "permissions"             :[
                               "https://accounts.google.com/o/oauth2/token",
-                              "https://www.googleapis.com/", "http://localhost/*",
+                              "https://www.googleapis.com/",
                               "*://*/*", "https://*/*", "http://*/*",
                               "tabs",
                               "storage",
